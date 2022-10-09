@@ -17,18 +17,16 @@ def main():
         unexpierenced = txt.split(", ")
     shuffle(expierenced)
     shuffle(unexpierenced)
-    num_exp = len(expierenced)
-    num_unexp = len(unexpierenced)
-    exp_per_team = int(num_exp / num_teams)
-    unexp_per_team = int(num_unexp / num_teams)
-    exp_rem = num_exp % num_teams
-    unexp_rem = num_unexp % num_teams
-    organize(expierenced, num_exp - exp_rem ,exp_per_team)
-    organize(unexpierenced, num_unexp - unexp_rem, unexp_per_team)
+    exp_per_team = int(len(expierenced) / num_teams)
+    unexp_per_team = int(len(unexpierenced) / num_teams)
+    exp_rem = len(expierenced) % num_teams
+    unexp_rem = len(unexpierenced) % num_teams
+    organize(expierenced, len(expierenced) - exp_rem, exp_per_team)
+    organize(unexpierenced, len(unexpierenced) - unexp_rem, unexp_per_team)
     if exp_rem != 0:
-        organize_rem(expierenced, num_exp, exp_per_team * num_teams)
+        organize_rem(expierenced, exp_per_team * num_teams)
     if unexp_rem != 0:
-        organize_rem(unexpierenced, num_unexp, unexp_per_team * num_teams)
+        organize_rem(unexpierenced, unexp_per_team * num_teams)
     with open("teams.txt", "w") as file:
         file.write("")
     with open("teams.txt", "a") as file:
@@ -53,10 +51,10 @@ def organize(members, mem_count, count):
         team += 1
 
 
-def organize_rem(members, mem_count, start):
+def organize_rem(members, start):
     sorted_teams = sorted(teams, key=lambda key: len(teams[key]))
     team_index = 0
-    for i in range(start, mem_count):
+    for i in range(start, len(members)):
         teams[sorted_teams[team_index]].append(members[i])
         team_index += 1
 
