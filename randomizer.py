@@ -1,4 +1,4 @@
-from random import randrange
+from random import shuffle
 
 teams = {}
 
@@ -62,16 +62,6 @@ def organize_rem(members, start):
 def add_comma(members):
     for i in range(len(members) - 1):
         members[i] = members[i] + ","
-
-    
-def shuffle(arr):
-    last_index = len(arr) - 1
-    while last_index > 0:
-        rand_index = randrange(last_index)
-        temp = arr[last_index]
-        arr[last_index] = arr[rand_index]
-        arr[rand_index] = temp
-        last_index -= 1
     
 
 if __name__ == "__main__":
